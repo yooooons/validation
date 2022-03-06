@@ -28,7 +28,8 @@ public class MessageCodesResolverTest {
 
             //bindingResult.rejectValue("itemName", "required");
             //rejectValue에서  codesResolver를 호출
-            /*반환)messageCode = required.item.itemName
+            /*반환)
+            messageCode = required.item.itemName
             messageCode = required.itemName
             messageCode = required.java.lang.String (타입)
             messageCode = required*/
