@@ -1,5 +1,6 @@
 package hello.itemservice.validation;
 
+import hello.itemservice.domain.item.Item;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.validation.DefaultMessageCodesResolver;
