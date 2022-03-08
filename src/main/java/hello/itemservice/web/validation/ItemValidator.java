@@ -34,30 +34,22 @@ public class ItemValidator implements Validator {
 
 
 //            bindingResult.addError(new FieldError("item", "itemName", item.getItemName(), false, new String[]{"required.item.itemName"}, null,null));
-            errors.rejectValue("itemName", "required2");
+            errors.rejectValue("itemName", "required");
         }
-
-
-
 
 
         if (item.getPrice() == null || item.getPrice() < 1000 || item.getPrice() > 1000000) { //item.getPrice() == null없으면 nullPointException 뜬다
             //StringUtils.hasText(item.getItemName(Integer.parseInt(item.getPrice))-> nullPointException이 뜨는데 parseInt의 매개변수인 item.getPrice가 애초에 null값이라서 문자변환 자체가 안된다.
 
             //bindingResult.addError(new FieldError("item", "price", item.getPrice(), false, new String[]{"range.item.price"}, new Object[]{1000, 1000000}, null));
-
-                errors.rejectValue("price", "required2");
-                errors.rejectValue("price","range2",new Object[]{1000,1000000},null);
+            errors.rejectValue("price", "required");
+            errors.rejectValue("price","range",new Object[]{1000,1000000},null);
 
         }
 
-
-
-
-
         if (item.getQuantity() == null || item.getQuantity() >= 9999) {
 //            bindingResult.addError(new FieldError("item", "quantity", item.getQuantity(), false, new String[]{"max.item.quantity"}, new Object[]{9999}, null));
-            errors.rejectValue("quantity","max2",new Object[]{9999}, null);
+            errors.rejectValue("quantity","max",new Object[]{9999}, null);
 
         }
         //특정 필드가 아닌 보합 룰 검증
@@ -65,7 +57,6 @@ public class ItemValidator implements Validator {
             int resultPrice = item.getPrice() * item.getQuantity();
             if (resultPrice < 10000) {
 //                bindingResult.addError(new ObjectError("item", new String[]{"totalPriceMin"}, new Object[]{10000,resultPrice},null));
-
                 errors.reject("totalPriceMin",new Object[]{10000,resultPrice},null);
 
             }

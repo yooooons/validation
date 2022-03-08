@@ -1,25 +1,27 @@
 package hello.itemservice.domain.item;
 
 import lombok.Data;
-import lombok.NonNull;
 import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.ScriptAssert;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 public class Item {
+
 
     private Long id;
 
     @NotBlank
     private String itemName;
 
-    @NonNull //set프로퍼티를 사용 할때 null값이 못들어가게 해준다
+    @NotNull
     @Range(min = 1000,max = 1000000)
     private Integer price;
 
-    @NonNull
+    @NotNull
     @Max(9999)
     private Integer quantity;
 

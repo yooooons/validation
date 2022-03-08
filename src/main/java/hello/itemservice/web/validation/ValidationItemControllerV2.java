@@ -2,8 +2,6 @@ package hello.itemservice.web.validation;
 
 import hello.itemservice.domain.item.Item;
 import hello.itemservice.domain.item.ItemRepository;
-import hello.itemservice.domain.item.NonNullTest;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -24,6 +22,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ValidationItemControllerV2 {
 
+    //@RequiredArgsConstructor 롬복으로 자동 생성자 생성 생성자1개일때 autowired생략돼도 가능 즉,@RequiredArgsConstructor하나로 자동으로 생성자의존주입
     private final ItemRepository itemRepository;
     private final ItemValidator itemValidator;
 
@@ -278,8 +277,8 @@ public class ValidationItemControllerV2 {
     @PostMapping("/add")
     /*
     @Validated 는 검증기를 실행하라는 애노테이션이다.
-    이 애노테이션이 붙으면 앞서 WebDataBinder 에 등록한 검증기를 찾아서 실행한다. 그런데 여러 검증기를
-    등록한다면 그 중에 어떤 검증기가 실행되어야 할지 구분이 필요하다. 이때 supports() 가 사용된다.
+    이 애노테이션이 붙으면 앞서 WebDataBinder 에 등록한 검증기(addValidators함수를 사용해서 등록한 validator ex)ItemValidator)를 찾아서(이때 supports() 가 사용된다.) 실행한다.(validate())
+    그런데 여러 검증기를 등록한다면 그 중에 어떤 검증기가 실행되어야 할지 구분이 필요하다. 이때 supports() 가 사용된다.
 
     ex) if (itemValidator.supports(item.getClass())) {
             itemValidator.validate(item,bindingResult);
