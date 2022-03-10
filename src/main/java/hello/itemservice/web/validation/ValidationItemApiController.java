@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+
 @Slf4j
 @RestController
 @RequestMapping("/validation/api/items")
@@ -18,7 +20,9 @@ public class ValidationItemApiController {
         log.info("API 컨트롤러 호출");
         if (bindingResult.hasErrors()) {
             log.info("검증오류발생 errors={}",bindingResult);
+            log.info("{}-{} ",bindingResult.getAllErrors().getClass(), bindingResult.getAllErrors() instanceof Object);
             return bindingResult.getAllErrors(); //ObjectError 자식이 FieldError 이다.
+
         }
 
         log.info("성공 로직실행");
